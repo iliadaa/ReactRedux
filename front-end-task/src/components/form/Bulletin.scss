@@ -1,0 +1,33 @@
+.form {
+  display: flex;
+}
+
+.left-form,
+.right-form {
+  flex: 1;
+}
+
+.fisica-giurisica,
+.indirizzo-citta {
+  display: flex;
+}
+
+.input-field {
+  display: grid;
+}
+.input {
+  font-size: 14px;
+  line-height: 19pt;
+  color: #3c4349;
+}
+.bold {
+  font-weight: bold;
+}
+
+.color::placeholder {
+  color: #fc6820;
+}
+
+// .input::placeholder {
+//   color: #3c4349;
+// }
