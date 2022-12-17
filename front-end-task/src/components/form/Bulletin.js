@@ -9,8 +9,7 @@ const Bulletin = () => {
     numeroContoCorrente: "",
     diEuro: "",
     causale: "",
-    fisica: "",
-    giurisica: "",
+    person: "",
     nome: "",
     cognome: "",
     denominazione: "",
@@ -26,7 +25,8 @@ const Bulletin = () => {
       placeholder: "Tipo Bollettino",
       label: "Tipo Bolletino",
       required: true,
-      className: "color input bold ",
+      className: " input  ",
+      isDisabled: false,
       // pattern: "[A-Za-z]{2,20}",
     },
     {
@@ -36,7 +36,8 @@ const Bulletin = () => {
       placeholder: "Numero Conto Corrente",
       label: "Numero Conto Corrente",
       required: true,
-      className: "input bold color",
+      className: "input ",
+      isDisabled: false,
       // pattern: "[A-Za-z]{3,20}",
     },
     {
@@ -45,7 +46,9 @@ const Bulletin = () => {
       type: "text",
       placeholder: "CAI-SUC.MI INCASSI WIND TELECOMUNICAZIONI II",
       label: "Intestato a",
-      className: "input bold",
+      className: "input-color bold",
+      // isDisabled: true,
+      readOnly: true
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -56,6 +59,7 @@ const Bulletin = () => {
       label: "di Euro €",
       required: true,
       className: "input bold",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -66,26 +70,31 @@ const Bulletin = () => {
       label: "Causale",
       required: true,
       className: "input",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 6,
-      name: "fisica",
-      type: "checkbox",
+      name: "person",
+      type: "radio",
       placeholder: "Fisica",
       label: "Fisica",
       required: true,
-      className: "input",
+      className: "checkbox",
+      isDisabled: false,
+
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 7,
-      name: "giurisica",
-      type: "checkbox",
-      placeholder: " Giurisica",
+      name: "person",
+      type: "radio",
+      placeholder: "Giurisica",
       label: "Giurisica",
       required: true,
-      className: "input",
+      className: "checkbox",
+      isDisabled: false,
+
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -96,6 +105,7 @@ const Bulletin = () => {
       label: "Nome ",
       required: true,
       className: "input",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -106,6 +116,7 @@ const Bulletin = () => {
       label: "Cognome",
       required: true,
       className: "input",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -116,6 +127,7 @@ const Bulletin = () => {
       label: "Denominazione",
       required: true,
       className: "input",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -126,6 +138,7 @@ const Bulletin = () => {
       label: "Indirizzo",
       required: true,
       className: "input",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
 
@@ -137,13 +150,16 @@ const Bulletin = () => {
       label: "Città",
       required: true,
       className: "input",
+      isDisabled: false,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
   ];
 
   const onChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value });
+
   return (
+
     <>
       <form>
         <div className="form">
@@ -151,7 +167,7 @@ const Bulletin = () => {
             {inputs
               .map((input) => (
                 <div key={input.id} className="input-field">
-                  <label>{input.label}</label>
+                  <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                   <Input
                     {...input}
                     value={values[input.name]}
@@ -159,28 +175,48 @@ const Bulletin = () => {
                   />
                 </div>
               ))
-              .slice(0, 5)}
-          </div>
-          <div className="right-form">
-            <div className="fisica-giurisica">
+              .slice(0, 3)}
+            <div className="euro-causale">
               {inputs
                 .map((input) => (
-                  <div key={input.id}>
-                    <label>{input.label}</label>
+                  <div key={input.id} className="input-field">
+                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                     <Input
                       {...input}
-                      value={values[input.name]}
+                      value={console.log(values[input.person])}
                       onChange={onChange}
                     />
                   </div>
                 ))
-                .slice(5, 7)}
+                .slice(3, 5)}</div>
+          </div>
+          <div className="vertical-line"></div>
+          <div className="right-form">
+            <div className="label-fisica-giurisica">
+              <label className="input-label">Persona <span className="req">*</span></label>
+              <div className="fisica-giurisica">
+                {inputs
+                  .map((input) => (
+                    <div key={input.id} className={input.name}>
+                      <div className="switch">
+                        <Input
+                          {...input}
+                          value={values[input.value]}
+                          onChange={onChange}
+                          id={input.id}
+                        />
+                      </div>
+                      <label htmlFor={input.id}>{input.label}</label>
+                    </div>
+                  ))
+                  .slice(5, 7)}
+              </div>
             </div>
-            <div>
+            <div className="nome-cognome">
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label>{input.label}</label>
+                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                     <Input
                       {...input}
                       value={values[input.name]}
@@ -190,11 +226,11 @@ const Bulletin = () => {
                 ))
                 .slice(7, 9)}
             </div>
-            <div>
+            <div className="denominazione">
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label>{input.label}</label>
+                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                     <Input
                       {...input}
                       value={values[input.name]}
@@ -208,7 +244,7 @@ const Bulletin = () => {
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label>{input.label}</label>
+                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                     <Input
                       {...input}
                       value={values[input.name]}
@@ -216,7 +252,7 @@ const Bulletin = () => {
                     />
                   </div>
                 ))
-                .slice(10, 11)}
+                .slice(10, 12)}
             </div>
           </div>
         </div>

@@ -37,11 +37,11 @@ const Form = () => {
             Prima di confermare la prenotazione verificare di aver inserito
             correttamente il numero di Conto Corrente Postale o l’IBAN del
             beneficiario e che i dati riportati nella sezione “Eseguito da”
-            corrispondano a quelli indicati dal richiedente. Qualora dovessero
+            corrispondano a quelli indicati dal richiedente. <br />Qualora dovessero
             essere inseriti dati non corretti il pagamento potrebbe essere
             inviato ad un beneficiario diverso rispetto a quello desiderato
             oppure il beneficiario potrebbe non riconoscere l’esecutore,
-            chiedendo un nuovo pagamento. Tutti i dati forniti sono trattati nel
+            chiedendo un nuovo pagamento.<br /> Tutti i dati forniti sono trattati nel
             rispetto della normativa vigente sul trattamento dei dati, come
             riportato nella nostra <a href="/">Privacy Policy</a> .
           </p>

@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .title-label {
   font-family: "Lato", sans-serif;
   text-transform: uppercase;
@@ -17,10 +18,10 @@
   line-height: 24pt;
   color: #fc6820;
 }
+
 .prenota-header,
 .input-form,
 .prenota-footer {
-  margin-top: 20px;
   margin-left: 26px;
   margin-right: 26px;
 }
@@ -38,18 +39,21 @@
   line-height: 13pt;
   font-size: 11px;
 }
+
 .costo-value {
   font-weight: bold;
   font-size: 11px;
   line-height: 13pt;
 }
+
 .container-form {
   hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #d2d4d5;
+    border-bottom: 1px solid #d2d4d5;
     padding: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -59,4 +63,10 @@
   line-height: 13pt;
   color: #3c4349;
   margin: 0;
+  margin-top: 15px;
+
+  a {
+    color: #3c4349;
+    text-decoration: none;
+  }
 }
