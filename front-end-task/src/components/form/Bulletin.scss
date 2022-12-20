@@ -51,6 +51,10 @@
   padding: 0;
 }
 
+input::placeholder {
+  padding-left: 10px;
+}
+
 .input::placeholder {
   font-family: " Roboto ", sans-serif;
   font-size: 14px;
