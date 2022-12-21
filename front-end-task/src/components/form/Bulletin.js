@@ -1,12 +1,18 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { firstApi } from "../../redux/api/actions";
 import Input from "../genericInput/Input";
 import "./Bulletin.scss";
 
 const Bulletin = () => {
+  const dispatch = useDispatch();
+  const api1 = useSelector((state) => state.api)
+  console.log(api1.companyName)
   const [values, setValues] = useState({
-    tipoBbollettino: "",
-    numeroContoCorrente: "",
+    tipologia: "123",
+    numero_conto_corrente: "42083204",
+    companyName: "",
     diEuro: "",
     causale: "",
     person: "",
@@ -17,36 +23,44 @@ const Bulletin = () => {
     citta: "",
   });
 
+  const fetchOnClick = () => {
+    dispatch(firstApi(values))
+    console.log(values)
+  }
+
   const inputs = [
     {
       id: 1,
-      name: "tipoBbollettino",
+      name: "tipologia",
       type: "text",
       placeholder: "Tipo Bollettino",
       label: "Tipo Bolletino",
       required: true,
-      className: " input  ",
+      className: " input",
       isDisabled: false,
+      value: `${values.tipologia}`
       // pattern: "[A-Za-z]{2,20}",
     },
     {
       id: 2,
-      name: "numeroContoCorrente",
+      name: "numero_conto_corrente",
       type: "text",
       placeholder: "Numero Conto Corrente",
       label: "Numero Conto Corrente",
       required: true,
       className: "input ",
       isDisabled: false,
+      value: `${values.numero_conto_corrente}`
       // pattern: "[A-Za-z]{3,20}",
     },
     {
       id: 3,
-      name: "intestatoA",
+      name: "companyName",
       type: "text",
-      placeholder: "CAI-SUC.MI INCASSI WIND TELECOMUNICAZIONI II",
+      placeholder: `${api1.companyName}`,
       label: "Intestato a",
       className: "input-color bold",
+      value: `${api1.companyName}`,
       // isDisabled: true,
       readOnly: true
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
@@ -161,6 +175,7 @@ const Bulletin = () => {
   return (
 
     <>
+      <button onClick={fetchOnClick}>fetch api</button>
       <form>
         <div className="form">
           <div className="left-form">
@@ -170,7 +185,7 @@ const Bulletin = () => {
                   <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                   <Input
                     {...input}
-                    value={values[input.name]}
+                    // value={`${api1.companyName}`}
                     onChange={onChange}
                   />
                 </div>
@@ -183,7 +198,7 @@ const Bulletin = () => {
                     <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
                     <Input
                       {...input}
-                      value={console.log(values[input.person])}
+                      value={values[input.name]}
                       onChange={onChange}
                     />
                   </div>
