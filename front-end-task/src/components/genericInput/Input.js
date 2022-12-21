@@ -14,6 +14,9 @@ const Input = (props) => {
     required,
     pattern,
     autoComplete,
+    src,
+    imgclassName,
+    fetchClick,
     ...inputProps
   } = props;
 
@@ -21,23 +24,26 @@ const Input = (props) => {
     setFocused(true);
   };
 
+
   return (
     <>
-      <input
-        name={props.name}
-        className={className}
-        value={value}
-        {...inputProps}
-        onChange={onChange}
-        onBlur={handleFocus}
-        focused={focused.toString()}
-        readOnly={props.readOnly}
-        disabled={props.isDisabled}
-        pattern={pattern}
-        required={props.required}
-        autoComplete={props.autoComplete}
-      />
-      <span className="error-span">{errorMessage}</span>
+      <div className="input-container">
+        <input
+          name={props.name}
+          className={className}
+          value={value}
+          {...inputProps}
+          onChange={onChange}
+          onBlur={handleFocus}
+          focused={focused.toString()}
+          readOnly={props.readOnly}
+          disabled={props.isDisabled}
+          pattern={pattern}
+          required={props.required}
+          autoComplete={props.autoComplete}
+        />
+        <img src={props.src} alt="icon" className={imgclassName} onClick={fetchClick}></img>
+      </div>
     </>
   );
 };

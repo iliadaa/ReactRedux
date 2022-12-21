@@ -46,7 +46,6 @@
   line-height: 19pt;
   color: #3c4349;
   border: none;
-  width: 361px;
   height: 35px;
   padding: 0;
 }
@@ -54,6 +53,7 @@
 input::placeholder {
   padding-left: 10px;
 }
+
 
 .input::placeholder {
   font-family: " Roboto ", sans-serif;
@@ -75,7 +75,7 @@ input:focus {
   width: 361px;
   height: 35px;
   padding: 0;
-  background-color: transparent;
+  color: #fc6820;
 }
 
 .input-color::placeholder {
@@ -136,6 +136,12 @@ input:focus {
   background-color: white;
 }
 
+.switch .input-container:nth-child(1),
+.switch .input-container:nth-child(2) {
+  background-color: transparent;
+  padding-top: 3px;
+}
+
 input.checkbox {
   margin: 0;
   margin-left: 4px;
@@ -143,4 +149,22 @@ input.checkbox {
 
 input[name="person"] {
   accent-color: #588A17;
+}
+
+.icon_hidden {
+  display: none;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #D2D4D5;
+  align-items: center;
+}
+
+.img-icon {
+  width: 24px;
+  height: 24px;
+  padding-right: 10px;
+  cursor: pointer;
 }

@@ -1,11 +1,10 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { firstApi } from "../../redux/api/actions";
 import Input from "../genericInput/Input";
 import "./Bulletin.scss";
-
+import searchIcon from "../../assets/searchIcon.png"
 const Bulletin = () => {
   const dispatch = useDispatch();
   const api1 = useSelector((state) => state.api);
@@ -37,11 +36,12 @@ const Bulletin = () => {
       placeholder: "Bianco Generico (TD 123)",
       label: "Tipo Bolletino",
       required: true,
-      className: " input",
+      className: "input",
       // isDisabled: true,
       readOnly: true,
       value: "Bianco Generico (TD " + +`${values.tipologia}` + ")",
       // pattern: "[A-Za-z]{2,20}",
+      imgclassName: "icon_hidden"
     },
     {
       id: 2,
@@ -53,6 +53,9 @@ const Bulletin = () => {
       className: "input ",
       isDisabled: false,
       value: `${values.numero_conto_corrente}`,
+      src: searchIcon,
+      fetchClick: fetchOnClick,
+      imgclassName: "img-icon"
       // pattern: "[A-Za-z]{3,20}",
     },
     {
@@ -63,7 +66,7 @@ const Bulletin = () => {
       label: "Intestato a",
       className: "input-color bold",
       value: `${api1.companyName}` + `${api1.errorCompanyName}`,
-
+      imgclassName: "icon_hidden",
       // isDisabled: true,
       readOnly: true,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
@@ -77,6 +80,7 @@ const Bulletin = () => {
       required: true,
       className: "input bold",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -88,6 +92,7 @@ const Bulletin = () => {
       required: true,
       className: "input",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -99,7 +104,7 @@ const Bulletin = () => {
       required: true,
       className: "checkbox",
       isDisabled: false,
-
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -111,7 +116,7 @@ const Bulletin = () => {
       required: true,
       className: "checkbox",
       isDisabled: false,
-
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -123,6 +128,7 @@ const Bulletin = () => {
       required: true,
       className: "input",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -134,6 +140,7 @@ const Bulletin = () => {
       required: true,
       className: "input",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -145,6 +152,7 @@ const Bulletin = () => {
       required: true,
       className: "input",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -156,6 +164,7 @@ const Bulletin = () => {
       required: true,
       className: "input",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
 
@@ -168,6 +177,7 @@ const Bulletin = () => {
       required: true,
       className: "input",
       isDisabled: false,
+      imgclassName: "icon_hidden",
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
   ];
@@ -177,7 +187,7 @@ const Bulletin = () => {
 
   return (
     <>
-      <button onClick={fetchOnClick}>fetch api</button>
+
       <form>
         <div className="form">
           <div className="left-form">
