@@ -37,6 +37,7 @@ const Input = (props) => {
         required={props.required}
         autoComplete={props.autoComplete}
       />
+      <span className="error-span">{errorMessage}</span>
     </>
   );
 };

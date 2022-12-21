@@ -1,17 +1,18 @@
+import { faL } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { firstApi } from "../../redux/api/actions";
 import Input from "../genericInput/Input";
 import "./Bulletin.scss";
 
 const Bulletin = () => {
   const dispatch = useDispatch();
-  const api1 = useSelector((state) => state.api)
-  console.log(api1.companyName)
+  const api1 = useSelector((state) => state.api);
+
   const [values, setValues] = useState({
-    tipologia: "123",
-    numero_conto_corrente: "42083204",
+    tipologia: `${api1.tipoBbollettino}`,
+    numero_conto_corrente: "",
     companyName: "",
     diEuro: "",
     causale: "",
@@ -24,21 +25,22 @@ const Bulletin = () => {
   });
 
   const fetchOnClick = () => {
-    dispatch(firstApi(values))
-    console.log(values)
-  }
+    dispatch(firstApi(values));
+    console.log(values);
+  };
 
   const inputs = [
     {
       id: 1,
       name: "tipologia",
       type: "text",
-      placeholder: "Tipo Bollettino",
+      placeholder: "Bianco Generico (TD 123)",
       label: "Tipo Bolletino",
       required: true,
       className: " input",
-      isDisabled: false,
-      value: `${values.tipologia}`
+      // isDisabled: true,
+      readOnly: true,
+      value: "Bianco Generico (TD " + +`${values.tipologia}` + ")",
       // pattern: "[A-Za-z]{2,20}",
     },
     {
@@ -50,19 +52,20 @@ const Bulletin = () => {
       required: true,
       className: "input ",
       isDisabled: false,
-      value: `${values.numero_conto_corrente}`
+      value: `${values.numero_conto_corrente}`,
       // pattern: "[A-Za-z]{3,20}",
     },
     {
       id: 3,
       name: "companyName",
       type: "text",
-      placeholder: `${api1.companyName}`,
+      placeholder: "Nome beneficario del pagamento",
       label: "Intestato a",
       className: "input-color bold",
-      value: `${api1.companyName}`,
+      value: `${api1.companyName}` + `${api1.errorCompanyName}`,
+
       // isDisabled: true,
-      readOnly: true
+      readOnly: true,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -173,7 +176,6 @@ const Bulletin = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
 
   return (
-
     <>
       <button onClick={fetchOnClick}>fetch api</button>
       <form>
@@ -182,7 +184,9 @@ const Bulletin = () => {
             {inputs
               .map((input) => (
                 <div key={input.id} className="input-field">
-                  <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
+                  <label htmlFor={input.id} className="input-label">
+                    {input.label} <span className="req">*</span>
+                  </label>
                   <Input
                     {...input}
                     // value={`${api1.companyName}`}
@@ -195,7 +199,9 @@ const Bulletin = () => {
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
+                    <label htmlFor={input.id} className="input-label">
+                      {input.label} <span className="req">*</span>
+                    </label>
                     <Input
                       {...input}
                       value={values[input.name]}
@@ -203,12 +209,15 @@ const Bulletin = () => {
                     />
                   </div>
                 ))
-                .slice(3, 5)}</div>
+                .slice(3, 5)}
+            </div>
           </div>
           <div className="vertical-line"></div>
           <div className="right-form">
             <div className="label-fisica-giurisica">
-              <label className="input-label">Persona <span className="req">*</span></label>
+              <label className="input-label">
+                Persona <span className="req">*</span>
+              </label>
               <div className="fisica-giurisica">
                 {inputs
                   .map((input) => (
@@ -231,7 +240,9 @@ const Bulletin = () => {
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
+                    <label htmlFor={input.id} className="input-label">
+                      {input.label} <span className="req">*</span>
+                    </label>
                     <Input
                       {...input}
                       value={values[input.name]}
@@ -245,7 +256,9 @@ const Bulletin = () => {
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
+                    <label htmlFor={input.id} className="input-label">
+                      {input.label} <span className="req">*</span>
+                    </label>
                     <Input
                       {...input}
                       value={values[input.name]}
@@ -259,7 +272,9 @@ const Bulletin = () => {
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
-                    <label htmlFor={input.id} className="input-label">{input.label} <span className="req">*</span></label>
+                    <label htmlFor={input.id} className="input-label">
+                      {input.label} <span className="req">*</span>
+                    </label>
                     <Input
                       {...input}
                       value={values[input.name]}
