@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { firstApi } from "../../redux/api/actions";
 import Input from "../genericInput/Input";
 import "./Bulletin.scss";
-import searchIcon from "../../assets/searchIcon.png"
+import searchIcon from "../../assets/searchIcon.png";
 const Bulletin = () => {
   const dispatch = useDispatch();
   const api1 = useSelector((state) => state.api);
-  const [selectedOption, setSelectedOptions] = useState("")
+  const [selectedOption, setSelectedOptions] = useState("");
   const [values, setValues] = useState({
     tipologia: `${api1.tipoBbollettino}`,
     numero_conto_corrente: "",
@@ -41,7 +41,7 @@ const Bulletin = () => {
       readOnly: true,
       value: "Bianco Generico (TD " + +`${values.tipologia}` + ")",
       // pattern: "[A-Za-z]{2,20}",
-      imgclassName: "icon_hidden"
+      imgclassName: "icon_hidden",
     },
     {
       id: 2,
@@ -55,20 +55,21 @@ const Bulletin = () => {
       value: `${values.numero_conto_corrente}`,
       src: searchIcon,
       fetchClick: fetchOnClick,
-      imgclassName: "img-icon"
+      imgclassName: "img-icon",
       // pattern: "[A-Za-z]{3,20}",
     },
     {
       id: 3,
       name: "companyName",
-      type: "text",
+      type: "textarea",
       placeholder: "Nome beneficario del pagamento",
       label: "Intestato a",
       className: "input-color bold",
-      value: `${api1.companyName}` + `${api1.errorCompanyName}`,
+      value: `${api1.companyName}` || `${api1.errorCompanyName}`,
       imgclassName: "icon_hidden",
-      // isDisabled: true,
+      isDisabled: true,
       readOnly: true,
+
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -106,7 +107,7 @@ const Bulletin = () => {
       isDisabled: false,
       imgclassName: "icon_hidden",
       value: "F",
-      checked: `${selectedOption === `G`} `
+      checked: `${selectedOption === `G`} `,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -120,7 +121,7 @@ const Bulletin = () => {
       isDisabled: false,
       imgclassName: "icon_hidden",
       value: "G",
-      checked: `${selectedOption === 'F'} `
+      checked: `${selectedOption === "F"} `,
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -189,12 +190,10 @@ const Bulletin = () => {
   const onChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value });
 
-
-
   const handleOptionChange = (e) => {
-    setSelectedOptions(e.target.value)
-  }
-  console.log(selectedOption)
+    setSelectedOptions(e.target.value);
+  };
+  console.log(selectedOption);
 
   const denominazioneInput = () => {
     return (
@@ -213,12 +212,12 @@ const Bulletin = () => {
             </div>
           ))
           .slice(9, 10)}
-      </>)
-  }
+      </>
+    );
+  };
 
   return (
     <>
-
       <form>
         <div className="form">
           <div className="left-form">
@@ -235,7 +234,24 @@ const Bulletin = () => {
                   />
                 </div>
               ))
-              .slice(0, 3)}
+              .slice(0, 2)}
+            {inputs
+              .map((input) => (
+                <div key={input.id} className="input-field">
+                  <label htmlFor={input.id} className="input-label">
+                    {input.label} <span className="req">*</span>
+                  </label>
+
+                  {/* <Input {...input} onChange={onChange} rows={5} cols={5} /> */}
+                  <textarea
+                    {...input}
+                    onChange={onChange}
+                    rows={5}
+                    cols={5}
+                  ></textarea>
+                </div>
+              ))
+              .slice(2, 3)}
             <div className="euro-causale">
               {inputs
                 .map((input) => (
@@ -268,9 +284,9 @@ const Bulletin = () => {
                           onChange={handleOptionChange}
                           {...input}
 
-                        // value={isSubscribed}
-                        // onChange={onChange}
-                        // id={input.id}
+                          // value={isSubscribed}
+                          // onChange={onChange}
+                          // id={input.id}
                         />
                       </div>
                       <label htmlFor={input.id}>{input.label}</label>
@@ -311,7 +327,8 @@ const Bulletin = () => {
                   </div>
                 ))
                 .slice(9, 10)}
-            </div> */}{denominazioneInput()}
+            </div> */}
+            {denominazioneInput()}
             <div className="indirizzo-citta">
               {inputs
                 .map((input) => (
@@ -331,8 +348,6 @@ const Bulletin = () => {
           </div>
         </div>
       </form>
-
-
     </>
   );
 };

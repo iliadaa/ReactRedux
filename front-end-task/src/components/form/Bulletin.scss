@@ -15,7 +15,6 @@
   margin-left: 19px;
 }
 
-
 .indirizzo-citta,
 .euro-causale {
   display: flex;
@@ -24,15 +23,13 @@
     input {
       width: 175px;
     }
-
   }
 }
 
 .fisica-giurisica {
   display: flex;
   justify-content: space-between;
-  background-color: #D2D4D5;
-
+  background-color: #d2d4d5;
 }
 
 .input-field {
@@ -54,7 +51,6 @@ input::placeholder {
   padding-left: 10px;
 }
 
-
 .input::placeholder {
   font-family: " Roboto ", sans-serif;
   font-size: 14px;
@@ -65,6 +61,12 @@ input::placeholder {
 input:focus {
   outline: none;
 }
+textarea:focus {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
 
 .input-color {
   font-family: " Roboto ", sans-serif;
@@ -73,7 +75,7 @@ input:focus {
   line-height: 19pt;
   border: none;
   width: 361px;
-  height: 35px;
+  height: 55px;
   padding: 0;
   color: #fc6820;
 }
@@ -91,7 +93,7 @@ input:focus {
   font-size: 10px;
   line-height: 14pt;
   font-family: " Roboto ", sans-serif;
-  color: #5C5C5C;
+  color: #5c5c5c;
 }
 
 .req {
@@ -99,7 +101,7 @@ input:focus {
 }
 
 *:required {
-  background-color: #D2D4D5;
+  background-color: #d2d4d5;
 }
 
 .indirizzo-citta .input-field:nth-child(1),
@@ -125,13 +127,13 @@ input:focus {
 
 .vertical-line {
   height: 275px;
-  border-left: 1px solid #D2D4D5;
+  border-left: 1px solid #d2d4d5;
 }
 
 .switch {
   width: 95px;
   height: 19px;
-  border: 1px solid #588A17;
+  border: 1px solid #588a17;
   border-radius: 45px;
   background-color: white;
 }
@@ -148,7 +150,7 @@ input.checkbox {
 }
 
 input[name="person"] {
-  accent-color: #588A17;
+  accent-color: #588a17;
 }
 
 .icon_hidden {
@@ -158,7 +160,7 @@ input[name="person"] {
 .input-container {
   display: flex;
   justify-content: space-between;
-  background-color: #D2D4D5;
+  background-color: #d2d4d5;
   align-items: center;
 }
 

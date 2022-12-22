@@ -25,7 +25,6 @@ const Input = (props) => {
     setFocused(true);
   };
 
-
   return (
     <>
       <div className="input-container">
@@ -44,7 +43,12 @@ const Input = (props) => {
           autoComplete={props.autoComplete}
           checked={checked}
         />
-        <img src={props.src} alt="icon" className={imgclassName} onClick={fetchClick}></img>
+        <img
+          src={props.src}
+          alt="icon"
+          className={imgclassName}
+          onClick={fetchClick}
+        ></img>
       </div>
     </>
   );
