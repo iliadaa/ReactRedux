@@ -7,6 +7,13 @@ import Bulletin from "../components/form/Bulletin";
 import Button from "../components/button/Button";
 
 const Form = () => {
+  const clickPrenota = () => {
+    console.log("click Prenota");
+  };
+  const clickAnulla = () => {
+    console.log("click Anulla");
+  };
+
   return (
     <div className="container">
       <div className="container-form">
@@ -54,8 +61,18 @@ const Form = () => {
       </div>
       <div className="button">
         {/* <Button name="Scan" /> */}
-        <Button name="Prenota" src={check_symbol} buttonClassName="button" />
-        <Button name="Annulla" src={close} buttonClassName="button" />
+        <Button
+          name="Prenota"
+          src={check_symbol}
+          buttonClassName="button"
+          onClick={clickPrenota}
+        />
+        <Button
+          name="Annulla"
+          src={close}
+          buttonClassName="button"
+          onClick={clickAnulla}
+        />
       </div>
     </div>
   );
