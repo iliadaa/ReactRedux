@@ -1,0 +1,27 @@
+.button-container {
+  display: inline-grid;
+  justify-items: center;
+  width: 91px;
+  height: 78px;
+  background-color: white;
+  justify-content: space-around;
+  border: 1px solid #d2d4d5;
+  cursor: pointer;
+}
+
+.button {
+  background: transparent;
+  color: #3c4349;
+  border: none;
+  font-size: 14px;
+  line-height: 19pt;
+  text-transform: uppercase;
+  margin-top: 1%;
+}
+
+.button .button-container:nth-child(1) {
+  border-bottom: 4px solid #01cc67;
+}
+.button .button-container:nth-child(2) {
+  border-bottom: 4px solid #ff3400;
+}

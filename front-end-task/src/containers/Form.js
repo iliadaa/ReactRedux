@@ -1,7 +1,11 @@
 import React from "react";
 import "./Form.scss";
 import icon_image from "../assets/Livello_11.svg";
+import check_symbol from "../assets/check-symbol.svg";
+import close from "../assets/close.svg";
 import Bulletin from "../components/form/Bulletin";
+import Button from "../components/button/Button";
+
 const Form = () => {
   return (
     <div className="container">
@@ -37,15 +41,21 @@ const Form = () => {
             Prima di confermare la prenotazione verificare di aver inserito
             correttamente il numero di Conto Corrente Postale o l’IBAN del
             beneficiario e che i dati riportati nella sezione “Eseguito da”
-            corrispondano a quelli indicati dal richiedente. <br />Qualora dovessero
-            essere inseriti dati non corretti il pagamento potrebbe essere
-            inviato ad un beneficiario diverso rispetto a quello desiderato
-            oppure il beneficiario potrebbe non riconoscere l’esecutore,
-            chiedendo un nuovo pagamento.<br /> Tutti i dati forniti sono trattati nel
-            rispetto della normativa vigente sul trattamento dei dati, come
-            riportato nella nostra <a href="/">Privacy Policy</a> .
+            corrispondano a quelli indicati dal richiedente. <br />
+            Qualora dovessero essere inseriti dati non corretti il pagamento
+            potrebbe essere inviato ad un beneficiario diverso rispetto a quello
+            desiderato oppure il beneficiario potrebbe non riconoscere
+            l’esecutore, chiedendo un nuovo pagamento.
+            <br /> Tutti i dati forniti sono trattati nel rispetto della
+            normativa vigente sul trattamento dei dati, come riportato nella
+            nostra <a href="/">Privacy Policy</a> .
           </p>
         </div>
+      </div>
+      <div className="button">
+        {/* <Button name="Scan" /> */}
+        <Button name="Prenota" src={check_symbol} buttonClassName="button" />
+        <Button name="Annulla" src={close} buttonClassName="button" />
       </div>
     </div>
   );

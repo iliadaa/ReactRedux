@@ -42,6 +42,7 @@ const Input = (props) => {
           required={props.required}
           autoComplete={props.autoComplete}
           checked={checked}
+          defaultChecked={props.defaultChecked}
         />
         <img
           src={props.src}

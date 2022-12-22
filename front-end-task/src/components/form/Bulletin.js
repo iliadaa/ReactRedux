@@ -37,10 +37,8 @@ const Bulletin = () => {
       label: "Tipo Bolletino",
       required: true,
       className: "input",
-      // isDisabled: true,
       readOnly: true,
       value: "Bianco Generico (TD " + +`${values.tipologia}` + ")",
-      // pattern: "[A-Za-z]{2,20}",
       imgclassName: "icon_hidden",
     },
     {
@@ -56,7 +54,6 @@ const Bulletin = () => {
       src: searchIcon,
       fetchClick: fetchOnClick,
       imgclassName: "img-icon",
-      // pattern: "[A-Za-z]{3,20}",
     },
     {
       id: 3,
@@ -66,11 +63,7 @@ const Bulletin = () => {
       label: "Intestato a",
       className: "input-color bold",
       value: `${api1.companyName}` || `${api1.errorCompanyName}`,
-      imgclassName: "icon_hidden",
-      isDisabled: true,
       readOnly: true,
-
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 4,
@@ -82,7 +75,6 @@ const Bulletin = () => {
       className: "input bold",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 5,
@@ -94,7 +86,6 @@ const Bulletin = () => {
       className: "input",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 6,
@@ -107,8 +98,7 @@ const Bulletin = () => {
       isDisabled: false,
       imgclassName: "icon_hidden",
       value: "F",
-      checked: `${selectedOption === `G`} `,
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
+      checked: "",
     },
     {
       id: 7,
@@ -121,8 +111,7 @@ const Bulletin = () => {
       isDisabled: false,
       imgclassName: "icon_hidden",
       value: "G",
-      checked: `${selectedOption === "F"} `,
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
+      checked: "",
     },
     {
       id: 8,
@@ -134,7 +123,6 @@ const Bulletin = () => {
       className: "input",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 9,
@@ -146,7 +134,6 @@ const Bulletin = () => {
       className: "input",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 10,
@@ -158,7 +145,6 @@ const Bulletin = () => {
       className: "input",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
       id: 11,
@@ -170,7 +156,6 @@ const Bulletin = () => {
       className: "input",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
 
     {
@@ -183,39 +168,48 @@ const Bulletin = () => {
       className: "input",
       isDisabled: false,
       imgclassName: "icon_hidden",
-      // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
   ];
 
   const onChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value });
 
-  const handleOptionChange = (e) => {
-    setSelectedOptions(e.target.value);
-  };
-  console.log(selectedOption);
-
-  const denominazioneInput = () => {
-    return (
-      <>
-        {inputs
-          .map((input) => (
-            <div key={input.id} className="input-field">
-              <label htmlFor={input.id} className="input-label">
-                {input.label} <span className="req">*</span>
-              </label>
-              <Input
-                {...input}
-                value={values[input.name]}
-                onChange={onChange}
-              />
-            </div>
-          ))
-          .slice(9, 10)}
-      </>
-    );
+  const handleOptionChange = (event) => {
+    setSelectedOptions(event.target.value);
   };
 
+  const click = () => {
+    console.log("Click =>", selectedOption);
+  };
+
+  const Giurisica = (
+    <div className="denominazione">
+      {inputs
+        .map((input) => (
+          <div key={input.id} className="input-field">
+            <label htmlFor={input.id} className="input-label">
+              {input.label} <span className="req">*</span>
+            </label>
+            <Input {...input} value={values[input.name]} onChange={onChange} />
+          </div>
+        ))
+        .slice(9, 10)}
+    </div>
+  );
+  const Fisica = (
+    <div className="nome-cognome">
+      {inputs
+        .map((input) => (
+          <div key={input.id} className="input-field">
+            <label htmlFor={input.id} className="input-label">
+              {input.label} <span className="req">*</span>
+            </label>
+            <Input {...input} value={values[input.value]} onChange={onChange} />
+          </div>
+        ))
+        .slice(7, 9)}
+    </div>
+  );
   return (
     <>
       <form>
@@ -227,11 +221,7 @@ const Bulletin = () => {
                   <label htmlFor={input.id} className="input-label">
                     {input.label} <span className="req">*</span>
                   </label>
-                  <Input
-                    {...input}
-                    // value={`${api1.companyName}`}
-                    onChange={onChange}
-                  />
+                  <Input {...input} onChange={onChange} />
                 </div>
               ))
               .slice(0, 2)}
@@ -241,8 +231,6 @@ const Bulletin = () => {
                   <label htmlFor={input.id} className="input-label">
                     {input.label} <span className="req">*</span>
                   </label>
-
-                  {/* <Input {...input} onChange={onChange} rows={5} cols={5} /> */}
                   <textarea
                     {...input}
                     onChange={onChange}
@@ -283,10 +271,8 @@ const Bulletin = () => {
                         <Input
                           onChange={handleOptionChange}
                           {...input}
-
-                          // value={isSubscribed}
-                          // onChange={onChange}
-                          // id={input.id}
+                          onClick={click()}
+                          id={input.id}
                         />
                       </div>
                       <label htmlFor={input.id}>{input.label}</label>
@@ -295,40 +281,11 @@ const Bulletin = () => {
                   .slice(5, 7)}
               </div>
             </div>
-
-            <div className="nome-cognome">
-              {inputs
-                .map((input) => (
-                  <div key={input.id} className="input-field">
-                    <label htmlFor={input.id} className="input-label">
-                      {input.label} <span className="req">*</span>
-                    </label>
-                    <Input
-                      {...input}
-                      value={values[input.value]}
-                      onChange={onChange}
-                    />
-                  </div>
-                ))
-                .slice(7, 9)}
-            </div>
-            {/* <div className="denominazione">
-              {inputs
-                .map((input) => (
-                  <div key={input.id} className="input-field">
-                    <label htmlFor={input.id} className="input-label">
-                      {input.label} <span className="req">*</span>
-                    </label>
-                    <Input
-                      {...input}
-                      value={values[input.name]}
-                      onChange={onChange}
-                    />
-                  </div>
-                ))
-                .slice(9, 10)}
-            </div> */}
-            {denominazioneInput()}
+            {selectedOption === "F"
+              ? Fisica
+              : selectedOption === "G"
+              ? Giurisica
+              : Fisica}
             <div className="indirizzo-citta">
               {inputs
                 .map((input) => (
