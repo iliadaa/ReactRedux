@@ -8,7 +8,7 @@ import searchIcon from "../../assets/searchIcon.png"
 const Bulletin = () => {
   const dispatch = useDispatch();
   const api1 = useSelector((state) => state.api);
-
+  const [selectedOption, setSelectedOptions] = useState("")
   const [values, setValues] = useState({
     tipologia: `${api1.tipoBbollettino}`,
     numero_conto_corrente: "",
@@ -105,6 +105,8 @@ const Bulletin = () => {
       className: "checkbox",
       isDisabled: false,
       imgclassName: "icon_hidden",
+      value: "F",
+      checked: `${selectedOption === `G`} `
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -117,6 +119,8 @@ const Bulletin = () => {
       className: "checkbox",
       isDisabled: false,
       imgclassName: "icon_hidden",
+      value: "G",
+      checked: `${selectedOption === 'F'} `
       // pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$",
     },
     {
@@ -185,6 +189,33 @@ const Bulletin = () => {
   const onChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value });
 
+
+
+  const handleOptionChange = (e) => {
+    setSelectedOptions(e.target.value)
+  }
+  console.log(selectedOption)
+
+  const denominazioneInput = () => {
+    return (
+      <>
+        {inputs
+          .map((input) => (
+            <div key={input.id} className="input-field">
+              <label htmlFor={input.id} className="input-label">
+                {input.label} <span className="req">*</span>
+              </label>
+              <Input
+                {...input}
+                value={values[input.name]}
+                onChange={onChange}
+              />
+            </div>
+          ))
+          .slice(9, 10)}
+      </>)
+  }
+
   return (
     <>
 
@@ -234,10 +265,12 @@ const Bulletin = () => {
                     <div key={input.id} className={input.name}>
                       <div className="switch">
                         <Input
+                          onChange={handleOptionChange}
                           {...input}
-                          value={values[input.value]}
-                          onChange={onChange}
-                          id={input.id}
+
+                        // value={isSubscribed}
+                        // onChange={onChange}
+                        // id={input.id}
                         />
                       </div>
                       <label htmlFor={input.id}>{input.label}</label>
@@ -246,6 +279,7 @@ const Bulletin = () => {
                   .slice(5, 7)}
               </div>
             </div>
+
             <div className="nome-cognome">
               {inputs
                 .map((input) => (
@@ -255,14 +289,14 @@ const Bulletin = () => {
                     </label>
                     <Input
                       {...input}
-                      value={values[input.name]}
+                      value={values[input.value]}
                       onChange={onChange}
                     />
                   </div>
                 ))
                 .slice(7, 9)}
             </div>
-            <div className="denominazione">
+            {/* <div className="denominazione">
               {inputs
                 .map((input) => (
                   <div key={input.id} className="input-field">
@@ -277,7 +311,7 @@ const Bulletin = () => {
                   </div>
                 ))
                 .slice(9, 10)}
-            </div>
+            </div> */}{denominazioneInput()}
             <div className="indirizzo-citta">
               {inputs
                 .map((input) => (
@@ -297,6 +331,8 @@ const Bulletin = () => {
           </div>
         </div>
       </form>
+
+
     </>
   );
 };

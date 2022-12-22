@@ -17,6 +17,7 @@ const Input = (props) => {
     src,
     imgclassName,
     fetchClick,
+    checked,
     ...inputProps
   } = props;
 
@@ -41,6 +42,7 @@ const Input = (props) => {
           pattern={pattern}
           required={props.required}
           autoComplete={props.autoComplete}
+          checked={checked}
         />
         <img src={props.src} alt="icon" className={imgclassName} onClick={fetchClick}></img>
       </div>
